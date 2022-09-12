@@ -91,7 +91,7 @@ class Controller{
 
             const registro = await linkService.buscarRegistroId(id_registro)
 
-            if(!registro) return res.status(400).json({
+            if(!registro) return res.status(404).json({
                 mensagem: 'Registro nao encontrado!',
                 id_registro
             })
@@ -99,8 +99,8 @@ class Controller{
             const registro_desativado = await linkService.desativarRegistro(id_registro)
 
             if(!registro_desativado) return res.status(500).json({
-                mensagem: 'Registro nao pode ser desativado.',
-                registro
+                mensagem: 'Um erro interno do servidor impede o link de ser desativado.',
+                id_registro
             })
 
             return res.status(200).json({
